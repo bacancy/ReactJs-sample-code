@@ -1,0 +1,39 @@
+<rt-require dependency="../../components/AppBreadcrumb.js" as="AppBreadcrumb" />
+<rt-require dependency="../../components/admin/AdminNavigation.js" as="SubTab" />
+<rt-require dependency="../../components/targets/AddTargetLists.js" as="AddTargetList" />
+<rt-require dependency="../../components/targets/ViewTargetList.js" as="ViewTargetList" />
+<rt-require dependency="griddle-react" as="Griddle" />
+
+<div className="col-xs-12 col-lg-12">
+    <div className="data-content">
+        <div className="row sub-tab-navigation">
+            <SubTab>
+
+            </SubTab>
+        </div>
+        <div className="row">
+            <div className="col-lg-12 margin-top-10">
+                <div className="target-list">
+                    <a rt-if="this.state.authorities.indexOf('ROLE_AddTargets') !== -1" className="btn btn-primary pull-right"  onClick="{this.onTargetList}" ><i className="fa fa-plus" aria-hidden="true"></i>      <span className="margin-left-10">Add Target List</span> </a>
+
+                    <Griddle
+                        results={this.state.targetList}
+                        resultsPerPage=10
+                        showFilter={true}
+                        filterPlaceholderText="Search Target List"
+                        columnMetadata={this.state.customColumnMetadata}
+                        columns={this.state.columns}
+                        initialSort="Name"
+                        initialSortAscending={false}
+                        useGriddleStyles={false}
+                        previousText="<"
+                        nextText=">"
+                        tableClassName="table table-bordered table-hover griddle-table">
+                    </Griddle>
+                </div>
+            </div>
+        </div>
+    </div>
+    <AddTargetList isTargetAdd="{this.state.isTargetAdd}" onUpdate="{this.onAddTarget}" />
+    <ViewTargetList isTargetAdd="{this.state.isTargetView}" onUpdate="{this.onViewTarget}" />
+</div>

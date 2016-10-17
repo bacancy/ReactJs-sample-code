@@ -1,0 +1,119 @@
+<rt-require dependency="../../components/AppBreadcrumb.js" as="AppBreadcrumb" />
+<rt-require dependency="../../components/admin/AdminNavigation.js" as="SubTab" />
+<rt-require dependency="griddle-react" as="Griddle" />
+<rt-require dependency="../../components/common/InputComponent.js" as="InputComponent" />
+<rt-require dependency="react-router/lib/Link" as="Link" />
+<rt-require dependency="react-modal" as="Modal" />
+
+<Modal
+    className="Modal__Bootstrap modal-dialog back_modal_hide target_detail_modal"
+    isOpen={this.state.isOpen}
+    >
+    <div className="">
+        <div className="col-xs-12 col-lg-12 margin-top-10 container-bg">
+            <div className="row modal-header">
+                <h4><strong>Add Target List</strong></h4>
+            </div>
+            <div className="col-lg-12 no-padding margin-top-10">
+                <div
+                    className="form-group col-lg-3 margin-bottom-5 padding-left-null padding-right-null-sm padding-right-null-md ">
+                    <label>Name *</label>
+
+                    <InputComponent
+                        id="target_list_name"
+                        rt-props="{
+                        valueLink:this.linkState('target_list_name'),
+                        placeholder:'Target list name',
+                        uniqueName:'target_list_name',
+                        type:'text',
+                        required:true,
+                        minCharacters:0,
+                        errorMessage:'Target list name is invalid',
+                        emptyMessage:'Target list name is required'
+                        }"
+                        />
+                </div>
+                <div
+                    className="form-group col-lg-3 margin-bottom-5 padding-left-null padding-right-null-sm padding-right-null-md ">
+                    <label>Description</label>
+                    <InputComponent
+                        id="target_list_description"
+                        rt-props="{
+                        valueLink:this.linkState('target_list_description'),
+                        placeholder:'Target description',
+                        uniqueName:'target_list_description',
+                        type:'text',
+                        required:false,
+                        minCharacters:0,
+                        errorMessage:'Target list description is invalid',
+                        emptyMessage:'Target list description is required'
+                        }"
+                        />
+                </div>
+            </div>
+            <div className="col-lg-12 no-padding margin-top-10 ">
+
+                <div className="clearfix margin-top-10" id="upload_file">
+                    <label class="btn btn-primary btn-file">
+                        Browse <input type="file" onChange="{this.onFileUpload}" style="display: none;">
+                    </label>
+                    <span className="margin-left-10">{this.state.uploadFileName}</span>
+                </div>
+                <div className="clearfix margin-top-10">
+                    <a href="../../../assets/xls/Targets-updated.xls">Download sample file</a>
+                </div>
+
+            </div>
+            <div className="col-lg-12 no-padding margin-top-10 row-border-seperator" rt-if="this.state.isDataLoaded">
+
+            </div>
+
+            <div className="col-lg-12 no-padding margin-top-10 loading-container" rt-if="this.state.isLoadingIcon">
+                <img src="../../../assets/images/loading.gif" className="loading" />
+
+                <div className="text-center">Loading...</div>
+
+            </div>
+
+            <div className="col-lg-12 no-padding margin-top-10" rt-if="this.state.isDataLoaded">
+                <h4><strong>Verify your data {this.state.totalRecords} records imported</strong></h4>
+                <h5>Valid records - {this.state.totalValidRecords}, Invalid records - {this.state.totalInvalidRecords} , Duplicate records - {this.state.totalDuplicateRecords} </h5>
+                <h5>Few sample are given below</h5>
+                <h5 className="pull-left margin-right-10"></h5>
+                <h5 className="pull-left margin-right-10"></h5>
+                <h5 className="pull-left margin-right-10"></h5>
+            </div>
+            <div className="col-lg-12 no-padding target-list" rt-if="this.state.isDataLoaded">
+                <Griddle
+                    results={this.state.targetList}
+                    resultsPerPage=10
+                    showFilter={false}
+                    filterPlaceholderText="Search User"
+                    columnMetadata={this.state.customColumnMetadata}
+                    columns={this.state.columns}
+                    initialSort="lastModifiedDate"
+                    initialSortAscending={false}
+                    useGriddleStyles={false}
+                    previousText="<"
+                    nextText=">"
+                    tableClassName="table table-bordered table-hover griddle-table">
+                </Griddle>
+            </div>
+
+            <div className="col-lg-12 no-padding margin-top-10" >
+                <div className="pull-left">
+                    <input type="button" className="btn-sm btn-primary margin-right-10 btn " value="Process" onClick="{this.onSave}" disabled="{this.state.isDisabled}" />
+                    <input type="button" className="btn-sm btn-primary btn " value="Cancel" onClick="{this.onCancel}"  />
+                </div>
+                <div className="pull-left margin-left-10" rt-if="this.state.isUploadingIcon">
+                    <img src="../../../assets/images/loading.gif" className="loading-small" />
+                </div>
+            </div>
+
+            <div className="col-lg-12 margin-top-10">
+
+            </div>
+
+        </div>
+    </div>
+</Modal>

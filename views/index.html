@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+    >
+<head th:fragment="title">
+    <title>SmartAds</title>
+</head>
+<head th:fragment="style" lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico"/>
+    <link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/assets/css/bootstrap-theme.css"/>
+    <link rel="stylesheet" href="/assets/css/style.css"/>
+    <link rel="stylesheet" href="/assets/css/BarChart.css"/>
+    <link rel="stylesheet" href="/assets/css/sidebar-nav.css"/>
+    <link rel="stylesheet" href="/assets/css/datepicker.css"/>
+    <link rel="stylesheet" href="/assets/css/slider.css"/>
+    <link rel="stylesheet" href="/assets/css/quill.snow.css"/>
+    <link rel="stylesheet" href="/assets/css/bubble.css"/>
+    <link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.css"/>
+</head>
+<body>
+<div th:fragment="content">
+    <div id="app"></div>
+    <script type="text/javascript" src="/js/utils/jquery-1.11.0.min.js"/>
+    <script type="text/javascript" src="/js/utils/bootstrap.min.js"/>
+
+    <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_fBvCnEx3CavSS4lLUk9jX21OeFXaThM&amp;libraries=places,visualization" ></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;libraries=places,visualization"></script>
+
+    <script type="text/javascript" src="/js/sidebar.js"/>
+    <script type="text/javascript" src="/js/bundle.js"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script>
+</div>
+
+</body>
+</html>

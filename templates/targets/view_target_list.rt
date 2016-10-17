@@ -1,0 +1,55 @@
+<rt-require dependency="../../components/AppBreadcrumb.js" as="AppBreadcrumb" />
+<rt-require dependency="../../components/admin/AdminNavigation.js" as="SubTab" />
+<rt-require dependency="griddle-react" as="Griddle" />
+<rt-require dependency="../../components/common/InputComponent.js" as="InputComponent" />
+<rt-require dependency="react-router/lib/Link" as="Link" />
+<rt-require dependency="react-modal" as="Modal" />
+
+<Modal
+    className="Modal__Bootstrap modal-dialog back_modal_hide target_detail_modal"
+    isOpen={this.state.isViewListOpen}
+    >
+    <div className="">
+        <div className="col-xs-12 col-lg-12 margin-top-10 container-bg">
+            <div className="row modal-header">
+                <h4><strong>{this.state.target_list_name}</strong></h4>
+            </div>
+            <div className="col-lg-12 no-padding margin-top-10 ">
+                <p className="text-muted no-margin">Description - </p>
+                {this.state.target_list_description}
+            </div>
+            <div className="col-lg-12 no-padding margin-top-10 row-border-seperator">
+
+            </div>
+            <div className="col-lg-12 no-padding margin-top-10">
+                <h4><strong>Total {this.state.totalRecords} records.</strong></h4>
+                <h5>Few sample are given below</h5>
+            </div>
+            <div className="col-lg-12 no-padding target-list">
+                <Griddle
+                    results={this.state.targetList}
+                    resultsPerPage=10
+                    showFilter={false}
+                    filterPlaceholderText="Search User"
+                    columnMetadata={this.state.customColumnMetadata}
+                    columns={this.state.columns}
+                    initialSort="lastModifiedDate"
+                    initialSortAscending={false}
+                    useGriddleStyles={false}
+                    previousText="<"
+                    nextText=">"
+                    tableClassName="table table-bordered table-hover griddle-table">
+                </Griddle>
+            </div>
+
+            <div className="col-lg-12 no-padding">
+                <input type="button" className="btn-sm btn-primary btn " value="Cancel" onClick="{this.onCancel}" />
+            </div>
+
+            <div className="col-lg-12 margin-top-10">
+
+            </div>
+
+        </div>
+    </div>
+</Modal>

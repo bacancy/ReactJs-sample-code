@@ -1,0 +1,41 @@
+<rt-require dependency="../components/campaign/allCampaigns.js" as="AllCampaign" xmlns="http://www.w3.org/1999/html" />
+<rt-require dependency="react-router/lib/Link" as="Link" />
+
+<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" id="myNavbar">
+    <nav className="navbar navbar-default">
+        <div className="navbar-header">
+            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span className="sr-only">Toggle navigation</span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+            </button>
+        </div>
+        <div className="collapse navbar-collapse no-padding" id="bs-example-navbar-collapse-1">
+            <ul className="nav navbar-nav">
+                <li className="visible-xs-block">
+                    {this.props.loggedInUsername}
+                </li>
+                <li rt-if="this.state.authorities.indexOf('ROLE_reports') !== -1">
+                    <a href="javascript:void(0)">DASHBOARD</a>
+                </li>
+                <li className="{this.props.activeClass.campaignActiveClass}" rt-if="this.state.authorities.indexOf('ROLE_campaigns') !== -1">
+                    <Link to="all_campaigns">
+                    CAMPAIGNS</Link>
+                </li>
+                <li key="2" className="{this.props.activeClass.userActiveClass}" rt-if="this.state.authorities.indexOf('ROLE_customers') !== -1">
+                    <Link to="customers">
+                    CUSTOMERS</Link>
+                </li>
+                <li className="{this.props.activeClass.adminActiveClass}" rt-if="this.state.authorities.indexOf('ROLE_users') !== -1 || this.state.authorities.indexOf('ROLE_roles') !== -1 || this.state.authorities.indexOf('ROLE_Targets') !== -1">
+                    <Link to="admin">
+                    ADMIN</Link>
+                </li>
+                <li className="visible-xs-block col-xs-12 col-lg-2 no-padding">
+                    <span className="hidden-xs icon icon-logout"></span>
+                    <a href="logout">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
